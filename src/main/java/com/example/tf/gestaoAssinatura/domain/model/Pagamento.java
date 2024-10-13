@@ -19,7 +19,7 @@ public class Pagamento {
 
     private Double valorPago;
     private LocalDate dataPagamento;
-    private String promocao;  // Pode ser "none" se não houver promoção
+    private String promocao;
 
     // Getters e Setters
     public Long getCodigo() {

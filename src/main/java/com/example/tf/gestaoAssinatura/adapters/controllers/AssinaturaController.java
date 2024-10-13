@@ -1,29 +1,53 @@
-package com.example.tf.gestaoAssinatura.adapters.controllers;
-
+package com.example.tf.gestaoAssinatura.api.controller;
 
 import com.example.tf.gestaoAssinatura.application.service.AssinaturaService;
 import com.example.tf.gestaoAssinatura.domain.model.Assinatura;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/assinaturas")
+@RequestMapping("/servcad/assinaturas")
 public class AssinaturaController {
+
     private final AssinaturaService assinaturaService;
 
     public AssinaturaController(AssinaturaService assinaturaService) {
         this.assinaturaService = assinaturaService;
     }
 
+    // Criar assinatura
     @PostMapping
-    public ResponseEntity<Assinatura> cadastrar(@RequestBody Assinatura assinatura) {
-        Assinatura novaAssinatura = assinaturaService.salvar(assinatura);
-        return ResponseEntity.ok(novaAssinatura);
+    public Assinatura criarAssinatura(@RequestBody Assinatura assinatura) {
+        return assinaturaService.criarAssinatura(assinatura);
     }
 
-    @GetMapping("/validade")
-    public ResponseEntity<Boolean> verificarValidade(@RequestParam Long clienteId, @RequestParam Long aplicativoId) {
-        boolean isValida = assinaturaService.isAssinaturaValida(clienteId, aplicativoId);
-        return ResponseEntity.ok(isValida);
+    // Listar assinaturas por tipo
+    @GetMapping("/{tipo}")
+    public List<Assinatura> listarAssinaturas(@PathVariable String tipo) {
+        return assinaturaService.listarAssinaturasPorTipo(tipo);
+    }
+
+
+    @GetMapping("/assinvalida/{codass}")
+    public boolean isAssinaturaValida(@PathVariable Long codass) {
+        return assinaturaService.isAssinaturaValida(codass);
+    }
+
+    // Registrar pagamento
+    @PostMapping("/registrarpagamento")
+    public void processarPagamento(@RequestParam Long codass, @RequestParam double valorPago, @RequestParam String promocao) {
+        assinaturaService.processarPagamento(codass, valorPago, promocao);
+    }
+
+    @GetMapping("/asscli/{codcli}")
+    public List<Assinatura> listarAssinaturasCliente(@PathVariable Long codcli) {
+        return assinaturaService.listarAssinaturasPorCliente(codcli);
+    }
+
+    // Listar assinaturas de um aplicativo
+    @GetMapping("/assapp/{codapp}")
+    public List<Assinatura> listarAssinaturasAplicativo(@PathVariable Long codapp) {
+        return assinaturaService.listarAssinaturasPorAplicativo(codapp);
     }
 }
