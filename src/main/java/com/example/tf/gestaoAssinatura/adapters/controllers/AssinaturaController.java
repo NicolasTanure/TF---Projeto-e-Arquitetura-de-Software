@@ -1,4 +1,4 @@
-package com.example.tf.gestaoAssinatura.api.controller;
+package com.example.tf.gestaoAssinatura.adapters.controllers;
 
 import com.example.tf.gestaoAssinatura.application.service.AssinaturaService;
 import com.example.tf.gestaoAssinatura.domain.model.Assinatura;
