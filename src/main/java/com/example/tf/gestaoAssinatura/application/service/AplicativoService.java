@@ -12,7 +12,7 @@ import java.util.Optional;
 public class AplicativoService {
 
     private final AplicativoRepository aplicativoRepository;
-
+    private final int s = 3;
     public AplicativoService(AplicativoRepository aplicativoRepository) {
         this.aplicativoRepository = aplicativoRepository;
     }
