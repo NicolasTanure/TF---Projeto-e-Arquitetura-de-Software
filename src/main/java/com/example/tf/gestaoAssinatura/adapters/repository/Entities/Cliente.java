@@ -1,5 +1,6 @@
 package com.example.tf.gestaoAssinatura.adapters.repository.Entities;
 
+import com.example.tf.gestaoAssinatura.domain.model.ClienteModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,9 @@ public class Cliente {
 
     private String nome;
     private String email;
+
+    public Cliente(long codigo, String nome, String email) {
+    }
 
     // Getters e Setters
     public Long getCodigo() {
@@ -39,4 +43,14 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public static Cliente fromClienteModel(ClienteModel clientModel) {
+        return new Cliente(clientModel.getCodigo(), clientModel.getNome(), clientModel.getEmail());
+    }
+
+    public static ClienteModel toClienteModel(Cliente client) {
+        return new ClienteModel(client.getCodigo(), client.getNome(), client.getEmail());
+    }
+
+
 }

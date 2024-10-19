@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 public class PagamentoModel {
     private long codigo;
-    private AssinaturaModel assiantura;
+    private AssinaturaModel assinatura;
     private Double valorPago;
     private LocalDate dataPagamento;
     private String promocao;
