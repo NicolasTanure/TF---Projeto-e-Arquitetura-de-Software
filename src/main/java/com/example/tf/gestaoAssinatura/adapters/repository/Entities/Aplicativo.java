@@ -22,6 +22,9 @@ public class Aplicativo {
     private String nome;
     private Double custoMensal;
 
+    public Aplicativo(long codigo, String nome, Double custoMensal) {
+    }
+
     // Getters e Setters
     public Long getCodigo() {
         return codigo;

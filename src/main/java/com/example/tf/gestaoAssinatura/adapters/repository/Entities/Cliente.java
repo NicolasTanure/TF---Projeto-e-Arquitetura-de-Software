@@ -23,6 +23,9 @@ public class Cliente {
     private String nome;
     private String email;
 
+    public Cliente(long codigo, String nome, String email) {
+    }
+
     // Getters e Setters
     public Long getCodigo() {
         return codigo;

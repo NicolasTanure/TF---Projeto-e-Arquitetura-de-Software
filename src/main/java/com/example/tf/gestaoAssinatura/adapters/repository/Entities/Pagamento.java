@@ -1,12 +1,17 @@
 package com.example.tf.gestaoAssinatura.adapters.repository.Entities;
 
+import com.example.tf.gestaoAssinatura.domain.model.PagamentoModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Pagamento {
 
@@ -20,6 +25,8 @@ public class Pagamento {
     private Double valorPago;
     private LocalDate dataPagamento;
     private String promocao;
+
+
 
     // Getters e Setters
     public Long getCodigo() {
@@ -61,4 +68,17 @@ public class Pagamento {
     public void setPromocao(String promocao) {
         this.promocao = promocao;
     }
-}
+
+    public static Pagamento fromPaymentModel(PagamentoModel paymentModel) {
+        return new Pagamento(paymentModel.getCodigo(), Assinatura.fromSubscriptionModel(paymentModel.getAssinatura()),
+                paymentModel.getValorPago(), paymentModel.getDataPagamento(), paymentModel.getPromocao());
+    }
+
+    public static PagamentoModel toPaymentModel(Pagamento payment) {
+        return new PagamentoModel(payment.getCodigo(), Assinatura.toSubscriptionModel(payment.getAssinatura()),
+                payment.getValorPago(), payment.getDataPagamento(), payment.getPromocao());
+    }
+
+    }
+
+
