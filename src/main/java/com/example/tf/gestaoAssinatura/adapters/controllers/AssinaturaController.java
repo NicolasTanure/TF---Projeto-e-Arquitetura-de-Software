@@ -1,7 +1,8 @@
 package com.example.tf.gestaoAssinatura.adapters.controllers;
 
+import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
 import com.example.tf.gestaoAssinatura.application.service.AssinaturaService;
-import com.example.tf.gestaoAssinatura.domain.model.Assinatura;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

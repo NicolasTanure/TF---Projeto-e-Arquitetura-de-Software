@@ -1,7 +1,8 @@
 package com.example.tf.gestaoAssinatura.adapters.controllers;
 
+import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Cliente;
 import com.example.tf.gestaoAssinatura.application.service.ClienteService;
-import com.example.tf.gestaoAssinatura.domain.model.Cliente;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

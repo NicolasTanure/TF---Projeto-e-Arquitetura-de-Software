@@ -1,7 +1,8 @@
-package com.example.tf.gestaoAssinatura.domain.repository;
+package com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories;
 
-import com.example.tf.gestaoAssinatura.domain.model.Assinatura;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,7 +1,8 @@
 package com.example.tf.gestaoAssinatura.application.service;
 
-import com.example.tf.gestaoAssinatura.domain.model.Aplicativo;
-import com.example.tf.gestaoAssinatura.domain.repository.AplicativoRepository;
+import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Aplicativo;
+import com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories.AplicativoRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

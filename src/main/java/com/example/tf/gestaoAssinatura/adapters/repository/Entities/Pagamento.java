@@ -1,4 +1,4 @@
-package com.example.tf.gestaoAssinatura.domain.model;
+package com.example.tf.gestaoAssinatura.adapters.repository.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
