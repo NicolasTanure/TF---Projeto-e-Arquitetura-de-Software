@@ -62,9 +62,14 @@ public class PagamentoService {
     LocalDate novaFimVigencia;
     if (fimVigenciaAtual.isBefore(dataPagamento)) {
         novaFimVigencia = dataPagamento.plusMonths(1);
+        assinatura.setFimVigencia(novaFimVigencia);
+        assinatura.setInicioVigencia(dataPagamento);
     } else {
         novaFimVigencia = fimVigenciaAtual.plusMonths(1);
+        assinatura.setFimVigencia(novaFimVigencia);
     }
+    assiRepo.save(assinatura);
+
     // Retorna a resposta com status de pagamento bem-sucedido e a nova data de fim de vigência
     return RespostaPagamentoDTO.builder()
             .data(novaFimVigencia)
