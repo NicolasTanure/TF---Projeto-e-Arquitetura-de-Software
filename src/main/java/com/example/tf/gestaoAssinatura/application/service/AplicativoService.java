@@ -16,12 +16,11 @@ public class AplicativoService {
         this.aplicativoRepository = aplicativoRepository;
     }
 
-    // Lista todos os aplicativos
+
     public List<AplicativoModel> listarAplicativos() {
         return aplicativoRepository.findAll();
     }
 
-    // Atualiza o custo mensal de um aplicativo
     public AplicativoModel atualizarCustoMensal(Long idAplicativo, Double novoCusto) {
         Optional<AplicativoModel> aplicativoOpt = aplicativoRepository.findById(idAplicativo);
         if (aplicativoOpt.isPresent()) {
