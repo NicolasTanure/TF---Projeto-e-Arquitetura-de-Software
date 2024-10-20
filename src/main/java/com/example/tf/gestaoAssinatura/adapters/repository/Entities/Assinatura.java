@@ -1,6 +1,8 @@
 package com.example.tf.gestaoAssinatura.adapters.repository.Entities;
 
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -82,7 +84,7 @@ public class Assinatura {
     }
 
     public static Assinatura fromSubscriptionModel(AssinaturaModel assinaturaModel) {
-        return new Assinatura(assinaturaModel.getCodigo(), Cliente.fromClienteModel(assinaturaModel.getCliente()),Aplicativo.fromAplicativoModel(assinaturaModel.getAplicativo()),
+        return new Assinatura(assinaturaModel.getCodigo(),Cliente.fromClienteModel(assinaturaModel.getCliente()), Aplicativo.fromAplicativoModel(assinaturaModel.getAplicativo()),
                 assinaturaModel.getInicioVigencia(), assinaturaModel.getFimVigencia());
     }
 

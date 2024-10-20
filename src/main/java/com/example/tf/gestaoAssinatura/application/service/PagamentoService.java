@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.tf.gestaoAssinatura.adapters.dto.PaymentRequestDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.RespostaPagamentoDTO;
+import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAplicativoRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IPagamentoRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
@@ -19,11 +20,14 @@ import jakarta.transaction.Transactional;
 public class PagamentoService {
     private IAssinaturaRepository assiRepo;
     private IPagamentoRepository pagaRepo;
+    private IAplicativoRepository appRepo;
     
     @Autowired
-    public PagamentoService(IAssinaturaRepository assiRepo,IPagamentoRepository pagaRepo) {
+    public PagamentoService(IAssinaturaRepository assiRepo,IPagamentoRepository pagaRepo, IAplicativoRepository appRepo) {
         this.assiRepo = assiRepo;
         this.pagaRepo = pagaRepo;
+        this.appRepo = appRepo;
+
     }
 
     @Transactional
@@ -68,6 +72,7 @@ public class PagamentoService {
         novaFimVigencia = fimVigenciaAtual.plusMonths(1);
         assinatura.setFimVigencia(novaFimVigencia);
     }
+    appRepo.save(assinatura.getAplicativoModel());
     assiRepo.save(assinatura);
 
     // Retorna a resposta com status de pagamento bem-sucedido e a nova data de fim de vigência

@@ -14,4 +14,8 @@ public class AssinaturaModel {
     private ClienteModel cliente;
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
+
+    public AplicativoModel getAplicativoModel(){
+        return aplicativo;
+    }
 }

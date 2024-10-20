@@ -23,7 +23,7 @@ public class AplicativoRepositoryJPA implements IAplicativoRepository {
 
     @Override
     public AplicativoModel save(AplicativoModel appModel) {
-        Aplicativo newApp = Aplicativo.fromAplicativoModel(appModel);
+        Aplicativo newApp = appRepo.findByNome(appModel.getNome());
         appRepo.save(newApp);
 
         return appModel;
