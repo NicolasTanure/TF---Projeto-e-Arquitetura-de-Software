@@ -17,6 +17,58 @@ public class AssinaturaService {
         this.assinaturaRepository = assinaturaRepository;
     }
 
+    public Optional<AssinaturaModel> getAssinaturaById(Long id) {
+        return assinaturaRepository.findById(id);
+    }
+
+    public AssinaturaModel updateAssinatura(AssinaturaModel assinatura) {
+        return assinaturaRepository.save(assinatura);
+    }
+
+    public List<AssinaturaModel> getAssinaturasPorStatus(String status) {
+        LocalDate hoje = LocalDate.now();
+        List<AssinaturaModel> assinaturas;
+
+        switch (status.toUpperCase()) {
+            case "ATIVAS":
+                assinaturas = assinaturaRepository.findByFimVigenciaAfter(hoje);
+                break;
+            case "CANCELADAS":
+                assinaturas = assinaturaRepository.findByFimVigenciaBefore(hoje);
+                break;
+            case "TODAS":
+            default:
+                assinaturas = assinaturaRepository.findAll();
+                break;
+        }
+        return assinaturas;
+    }
+
+
+
+
+    // Método para criar uma nova assinatura ou reativar uma assinatura existente
+    public AssinaturaModel criarOuReativarAssinatura(AssinaturaModel novaAssinatura) {
+        List<AssinaturaModel> assinaturasExistentes = assinaturaRepository
+                .findByClienteCodigo(novaAssinatura.getCliente().getCodigo());
+
+        AssinaturaModel assinatura;
+
+        if (!assinaturasExistentes.isEmpty()) {
+            // Supondo que você queira usar a primeira assinatura encontrada
+            assinatura = assinaturasExistentes.get(0);
+            // Renova a assinatura por mais 30 dias
+            assinatura.setFimVigencia(assinatura.getFimVigencia().plusDays(30));
+        } else {
+            // Cria uma nova assinatura se não houver uma existente
+            assinatura = novaAssinatura;
+            assinatura.setInicioVigencia(LocalDate.now());
+            assinatura.setFimVigencia(LocalDate.now().plusDays(7)); // Exemplo de 7 dias grátis
+        }
+
+        return assinaturaRepository.save(assinatura);
+    }
+
     // Criar assinatura com 7 dias grátis
     public AssinaturaModel criarAssinatura(AssinaturaModel assinatura) {
         assinatura.setInicioVigencia(LocalDate.now());

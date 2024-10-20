@@ -7,6 +7,7 @@ import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/servcad/assinaturas")
@@ -30,6 +31,11 @@ public class AssinaturaController {
         return assinaturaService.listarAssinaturasPorTipo(tipo);
     }
 
+    @PostMapping("/reativar")
+    public AssinaturaModel criarOuReativarAssinatura(@RequestBody AssinaturaModel novaAssinatura) {
+        return assinaturaService.criarOuReativarAssinatura(novaAssinatura);
+    }
+
 
     @GetMapping("/assinvalida/{codass}")
     public boolean isAssinaturaValida(@PathVariable Long codass) {
@@ -40,6 +46,23 @@ public class AssinaturaController {
     @PostMapping("/registrarpagamento")
     public void processarPagamento(@RequestParam Long codass, @RequestParam double valorPago, @RequestParam String promocao) {
         assinaturaService.processarPagamento(codass, valorPago, promocao);
+    }
+
+    // Buscar assinatura por ID
+    @GetMapping("/buscar/{id}")
+    public Optional<AssinaturaModel> getAssinaturaById(@PathVariable Long id) {
+        return assinaturaService.getAssinaturaById(id);
+    }
+
+    // **Atualizar assinatura**
+    @PutMapping("/atualizar")
+    public AssinaturaModel updateAssinatura(@RequestBody AssinaturaModel assinatura) {
+        return assinaturaService.updateAssinatura(assinatura);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<AssinaturaModel> getAssinaturasPorStatus(@PathVariable String status) {
+        return assinaturaService.getAssinaturasPorStatus(status);
     }
 
     @GetMapping("/asscli/{codcli}")
