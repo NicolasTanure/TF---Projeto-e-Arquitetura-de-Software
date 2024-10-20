@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.tf.gestaoAssinatura.adapters.dto.PaymentRequestDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.RespostaPagamentoDTO;
@@ -14,6 +15,7 @@ import com.example.tf.gestaoAssinatura.domain.model.PagamentoModel;
 
 import jakarta.transaction.Transactional;
 
+@Service
 public class PagamentoService {
     private IAssinaturaRepository assiRepo;
     private IPagamentoRepository pagaRepo;
