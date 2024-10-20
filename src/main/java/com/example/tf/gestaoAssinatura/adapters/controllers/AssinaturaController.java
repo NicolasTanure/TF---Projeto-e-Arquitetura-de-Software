@@ -1,9 +1,12 @@
 package com.example.tf.gestaoAssinatura.adapters.controllers;
 
+import com.example.tf.gestaoAssinatura.adapters.dto.ListarAssinaturasTipoDTO;
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
 import com.example.tf.gestaoAssinatura.application.service.AssinaturaService;
 
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +30,7 @@ public class AssinaturaController {
 
     // Listar assinaturas por tipo
     @GetMapping("/assinaturas/{tipo}")
-    public List<AssinaturaModel> listarAssinaturas(@PathVariable String tipo) {
+    public ResponseEntity<List<ListarAssinaturasTipoDTO>>listarAssinaturas(@PathVariable String tipo) {
         return assinaturaService.listarAssinaturasPorTipo(tipo);
     }
 
