@@ -13,6 +13,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @Entity
+@NoArgsConstructor
 public class Aplicativo {
 
     @Id

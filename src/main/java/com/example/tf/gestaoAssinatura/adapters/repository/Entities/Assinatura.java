@@ -6,9 +6,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
+import lombok.*;
 
+import java.time.LocalDate;
+@NoArgsConstructor
 @Entity
+@Builder
+@Getter
+@Setter
+
+
+
 public class Assinatura {
 
     @Id

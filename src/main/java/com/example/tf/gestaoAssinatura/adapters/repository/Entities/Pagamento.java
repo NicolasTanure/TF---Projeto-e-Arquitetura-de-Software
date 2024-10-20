@@ -6,13 +6,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
+@Builder
+@Getter
+@Setter
 public class Pagamento {
 
     @Id
