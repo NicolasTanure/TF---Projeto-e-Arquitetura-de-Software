@@ -1,10 +1,17 @@
 package com.example.tf.gestaoAssinatura.adapters.repository.Entities;
 
+import com.example.tf.gestaoAssinatura.domain.model.AplicativoModel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.*;
 
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 public class Aplicativo {
 
@@ -38,6 +45,14 @@ public class Aplicativo {
 
     public void setCustoMensal(Double custoMensal) {
         this.custoMensal = custoMensal;
+    }
+
+    public static Aplicativo fromAplicativoModel(AplicativoModel aplicativoModel) {
+        return new Aplicativo(aplicativoModel.getCodigo(), aplicativoModel.getNome(), aplicativoModel.getCustoMensal());
+    }
+
+    public static AplicativoModel toAplicativoModel(Aplicativo app) {
+        return new AplicativoModel(app.getCodigo(), app.getNome(), app.getCustoMensal());
     }
 }
 
