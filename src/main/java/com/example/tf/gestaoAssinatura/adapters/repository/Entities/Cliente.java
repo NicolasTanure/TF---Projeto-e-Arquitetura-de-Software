@@ -1,11 +1,18 @@
 package com.example.tf.gestaoAssinatura.adapters.repository.Entities;
 
 import com.example.tf.gestaoAssinatura.domain.model.ClienteModel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.*;
 
+
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 public class Cliente {
 
@@ -51,6 +58,4 @@ public class Cliente {
     public static ClienteModel toClienteModel(Cliente client) {
         return new ClienteModel(client.getCodigo(), client.getNome(), client.getEmail());
     }
-
-
 }
