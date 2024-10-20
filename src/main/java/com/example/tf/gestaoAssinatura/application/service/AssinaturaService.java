@@ -1,12 +1,16 @@
 package com.example.tf.gestaoAssinatura.application.service;
 
+import com.example.tf.gestaoAssinatura.adapters.dto.ListarAssinaturasTipoDTO;
 import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AssinaturaService {
@@ -115,14 +119,27 @@ public class AssinaturaService {
     }
 
     // Listar assinaturas por tipo (ATIVA ou CANCELADA)
-    public List<AssinaturaModel> listarAssinaturasPorTipo(String tipo) {
+    public ResponseEntity<List<ListarAssinaturasTipoDTO>> listarAssinaturasPorTipo(String tipo) {
+        List<AssinaturaModel> lista;
         LocalDate hoje = LocalDate.now();
         if (tipo.equalsIgnoreCase("ATIVAS")) {
-            return assinaturaRepository.findByFimVigenciaAfter(hoje);
+            lista =  assinaturaRepository.findByFimVigenciaAfter(hoje);
         } else if (tipo.equalsIgnoreCase("CANCELADAS")) {
-            return assinaturaRepository.findByFimVigenciaBefore(hoje);
+            lista = assinaturaRepository.findByFimVigenciaBefore(hoje);
         }
-        return listarAssinaturas(); // Se tipo for "TODAS"
+        else{
+            lista = listarAssinaturas(); // Se tipo for "TODAS"
+        }
+        
+        List<ListarAssinaturasTipoDTO> listDTO = lista.stream()
+                .map(assinatura -> new ListarAssinaturasTipoDTO(
+                        assinatura.getCodigo(),
+                        assinatura.getCliente().getCodigo(),
+                        assinatura.getAplicativo().getCodigo(),
+                        assinatura.getInicioVigencia(),
+                        assinatura.getFimVigencia()))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listDTO);
     }
 
     public List<AssinaturaModel> listarAssinaturasPorCliente(Long clienteId) {
