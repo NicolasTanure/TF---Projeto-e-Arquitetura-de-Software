@@ -3,8 +3,10 @@ package com.example.tf.gestaoAssinatura.application.service;
 
 
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Cliente;
+import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IClienteRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories.ClienteRepository;
 
+import com.example.tf.gestaoAssinatura.domain.model.ClienteModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,15 +14,18 @@ import java.util.List;
 @Service
 public class ClienteService {
 
-    private final ClienteRepository clienteRepository;
+    private final IClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository clienteRepository) {
+    public ClienteService(IClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
-    // Listar todos os clientes
-    public List<Cliente> listarClientes() {
+
+    public List<ClienteModel> listarClientes() {
         return clienteRepository.findAll();
     }
+
+
+
 }
 
