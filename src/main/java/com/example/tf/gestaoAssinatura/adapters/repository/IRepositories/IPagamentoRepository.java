@@ -1,5 +1,5 @@
 package com.example.tf.gestaoAssinatura.adapters.repository.IRepositories;
 
-public class IPagamentoRepository {
+public interface IPagamentoRepository {
     
 }
