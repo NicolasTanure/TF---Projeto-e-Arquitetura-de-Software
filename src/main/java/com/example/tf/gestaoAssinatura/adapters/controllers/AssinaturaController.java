@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/servcad/assinaturas")
+@RequestMapping("/servcad")
 public class AssinaturaController {
 
     private final AssinaturaService assinaturaService;
@@ -20,13 +20,13 @@ public class AssinaturaController {
     }
 
     // Criar assinatura
-    @PostMapping
+    @PostMapping("/assinaturas")
     public AssinaturaModel criarAssinatura(@RequestBody AssinaturaModel assinatura) {
         return assinaturaService.criarAssinatura(assinatura);
     }
 
     // Listar assinaturas por tipo
-    @GetMapping("/{tipo}")
+    @GetMapping("/assinaturas/{tipo}")
     public List<AssinaturaModel> listarAssinaturas(@PathVariable String tipo) {
         return assinaturaService.listarAssinaturasPorTipo(tipo);
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/servcad/aplicativos")
+@RequestMapping("/servcad")
 public class AplicativoController {
 
     private final AplicativoService aplicativoService;
@@ -20,7 +20,7 @@ public class AplicativoController {
     }
 
     // Listar todos os aplicativos
-    @GetMapping
+    @GetMapping("/aplicativos")
     public List<AplicativoModel> listarAplicativos() {
         return aplicativoService.listarAplicativos();
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/servcad/clientes")
+@RequestMapping("/servcad")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -21,7 +21,7 @@ public class ClienteController {
     }
 
     // Listar todos os clientes
-    @GetMapping
+    @GetMapping("/clientes")
     public List<ClienteModel> listarClientes() {
         return clienteService.listarClientes();
     }
