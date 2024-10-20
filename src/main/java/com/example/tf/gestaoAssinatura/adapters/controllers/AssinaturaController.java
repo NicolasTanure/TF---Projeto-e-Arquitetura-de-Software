@@ -3,6 +3,7 @@ package com.example.tf.gestaoAssinatura.adapters.controllers;
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
 import com.example.tf.gestaoAssinatura.application.service.AssinaturaService;
 
+import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,13 +20,13 @@ public class AssinaturaController {
 
     // Criar assinatura
     @PostMapping
-    public Assinatura criarAssinatura(@RequestBody Assinatura assinatura) {
+    public AssinaturaModel criarAssinatura(@RequestBody AssinaturaModel assinatura) {
         return assinaturaService.criarAssinatura(assinatura);
     }
 
     // Listar assinaturas por tipo
     @GetMapping("/{tipo}")
-    public List<Assinatura> listarAssinaturas(@PathVariable String tipo) {
+    public List<AssinaturaModel> listarAssinaturas(@PathVariable String tipo) {
         return assinaturaService.listarAssinaturasPorTipo(tipo);
     }
 
@@ -42,13 +43,13 @@ public class AssinaturaController {
     }
 
     @GetMapping("/asscli/{codcli}")
-    public List<Assinatura> listarAssinaturasCliente(@PathVariable Long codcli) {
+    public List<AssinaturaModel> listarAssinaturasCliente(@PathVariable Long codcli) {
         return assinaturaService.listarAssinaturasPorCliente(codcli);
     }
 
     // Listar assinaturas de um aplicativo
     @GetMapping("/assapp/{codapp}")
-    public List<Assinatura> listarAssinaturasAplicativo(@PathVariable Long codapp) {
+    public List<AssinaturaModel> listarAssinaturasAplicativo(@PathVariable Long codapp) {
         return assinaturaService.listarAssinaturasPorAplicativo(codapp);
     }
 }
