@@ -1,14 +1,12 @@
 package com.example.tf.gestaoAssinatura.application.service;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.example.tf.gestaoAssinatura.adapters.dto.PaymentRequestDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.RespostaPagamentoDTO;
-import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
 import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IPagamentoRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
@@ -27,7 +25,11 @@ public class PagamentoService {
     }
 
     @Transactional
-    public RespostaPagamentoDTO fazPagamento(LocalDate dataPagamento, Long codigo, Double valor) {
+    //LocalDate dataPagamento, Long codigo, Double valor
+    public RespostaPagamentoDTO fazPagamento(PaymentRequestDTO dto) {
+        Long codigo = dto.getAssinaturaId();
+        LocalDate dataPagamento = dto.getData();
+        Double valor = dto.getValorPago();
         Optional<AssinaturaModel> assinaturaOpc = assiRepo.findById(codigo);
         if (assinaturaOpc.isEmpty()) {
             return RespostaPagamentoDTO.builder()
@@ -39,7 +41,7 @@ public class PagamentoService {
         AssinaturaModel assinatura = assinaturaOpc.get();
         Double valorDif = valor - assinatura.getAplicativo().getCustoMensal();
 
-        if ( valorDif < 0) {
+        if ( valorDif != 0) {
             return RespostaPagamentoDTO.builder()
                     .data(dataPagamento)
                     .valor(valor)
