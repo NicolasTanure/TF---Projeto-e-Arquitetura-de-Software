@@ -27,8 +27,8 @@ public class AplicativoController {
 
     // Atualizar o custo mensal do aplicativo
     @PostMapping("/atualizacusto/{idAplicativo}")
-    public ResponseEntity<AplicativoModel> atualizarCustoMensal(@PathVariable Long idAplicativo, @RequestBody Aplicativo aplicativoAtualizado) {
-        AplicativoModel atualizado = aplicativoService.atualizarCustoMensal(idAplicativo, aplicativoAtualizado.getCustoMensal());
+    public ResponseEntity<?> atualizarCustoMensal(@PathVariable Long idAplicativo, @RequestBody Double custo) {
+        AplicativoModel atualizado = aplicativoService.atualizarCustoMensal(idAplicativo, custo);
         return ResponseEntity.ok(atualizado);
     }
 }
