@@ -35,8 +35,8 @@ public class AssinaturaRepositoryJPA implements IAssinaturaRepository{
     @Override
     public AssinaturaModel save(AssinaturaModel assinatura) {
         Assinatura novaAssinatura = Assinatura.fromSubscriptionModel(assinatura);
-        assiRepo.save(novaAssinatura);
-        return assinatura;
+        novaAssinatura = assiRepo.save(novaAssinatura);
+        return Assinatura.toSubscriptionModel(novaAssinatura);
     }
 
     @Override

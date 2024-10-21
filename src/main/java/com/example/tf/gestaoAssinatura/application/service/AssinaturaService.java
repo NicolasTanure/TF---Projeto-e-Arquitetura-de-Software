@@ -1,13 +1,21 @@
 package com.example.tf.gestaoAssinatura.application.service;
 
+import com.example.tf.gestaoAssinatura.adapters.dto.AssinaturaRequestDTO;
+import com.example.tf.gestaoAssinatura.adapters.dto.AssinaturaResponseDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.ListarAssinaturasTipoDTO;
+import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAplicativoRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
+import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IClienteRepository;
+import com.example.tf.gestaoAssinatura.domain.model.AplicativoModel;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
 
+import com.example.tf.gestaoAssinatura.domain.model.ClienteModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,9 +24,14 @@ import java.util.stream.Collectors;
 public class AssinaturaService {
 
     private final IAssinaturaRepository assinaturaRepository;
+    private final IClienteRepository clienteRepository;
 
-    public AssinaturaService(IAssinaturaRepository assinaturaRepository) {
+    private final IAplicativoRepository aplicativoRepository;
+
+    public AssinaturaService(IAssinaturaRepository assinaturaRepository, IClienteRepository clienteRepository, IAplicativoRepository aplicativoRepository) {
         this.assinaturaRepository = assinaturaRepository;
+        this.clienteRepository = clienteRepository;
+        this.aplicativoRepository = aplicativoRepository;
     }
 
     public Optional<AssinaturaModel> getAssinaturaById(Long id) {
@@ -73,11 +86,31 @@ public class AssinaturaService {
         return assinaturaRepository.save(assinatura);
     }
 
-    // Criar assinatura com 7 dias grátis
-    public AssinaturaModel criarAssinatura(AssinaturaModel assinatura) {
+    public AssinaturaResponseDTO criarAssinatura(AssinaturaRequestDTO assinaturaDTO) {
+        Optional<ClienteModel> clienteOpt = clienteRepository.findById(assinaturaDTO.getCodigoCliente());
+        Optional<AplicativoModel> aplicativoOpt = aplicativoRepository.findById(assinaturaDTO.getCodigoAplicativo());
+
+
+
+        ClienteModel cliente = clienteOpt.get();
+        AplicativoModel aplicativo = aplicativoOpt.get();
+
+        AssinaturaModel assinatura = new AssinaturaModel();
+        assinatura.setCliente(cliente);
+        assinatura.setAplicativo(aplicativo);
         assinatura.setInicioVigencia(LocalDate.now());
-        assinatura.setFimVigencia(LocalDate.now().plusDays(7));
-        return assinaturaRepository.save(assinatura);
+        assinatura.setFimVigencia(LocalDate.now().plusDays(7)); // Exemplo de 7 dias grátis
+
+        AssinaturaModel assinaturaSalva = assinaturaRepository.save(assinatura);
+
+        return new AssinaturaResponseDTO(
+                assinaturaSalva.getCodigo(),                           // Código da assinatura gerada
+                assinaturaSalva.getCliente().getCodigo(),              // Código do cliente
+                assinaturaSalva.getAplicativo().getCodigo(),           // Código do aplicativo
+                Date.from(assinaturaSalva.getInicioVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()), // Data de início
+                Date.from(assinaturaSalva.getFimVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),      // Data de encerramento
+                "ATIVA"  // Status da assinatura
+        );
     }
 
     // Atualizar assinatura com o pagamento

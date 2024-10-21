@@ -1,5 +1,7 @@
 package com.example.tf.gestaoAssinatura.adapters.controllers;
 
+import com.example.tf.gestaoAssinatura.adapters.dto.AssinaturaRequestDTO;
+import com.example.tf.gestaoAssinatura.adapters.dto.AssinaturaResponseDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.ListarAssinaturasTipoDTO;
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
 import com.example.tf.gestaoAssinatura.application.service.AssinaturaService;
@@ -24,7 +26,7 @@ public class AssinaturaController {
 
     // Criar assinatura
     @PostMapping("/assinaturas")
-    public AssinaturaModel criarAssinatura(@RequestBody AssinaturaModel assinatura) {
+    public AssinaturaResponseDTO criarAssinatura(@RequestBody AssinaturaRequestDTO assinatura) {
         return assinaturaService.criarAssinatura(assinatura);
     }
 
