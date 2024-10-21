@@ -142,12 +142,32 @@ public class AssinaturaService {
         return ResponseEntity.ok(listDTO);
     }
 
-    public List<AssinaturaModel> listarAssinaturasPorCliente(Long clienteId) {
-        return assinaturaRepository.findByClienteCodigo(clienteId);
+    public ResponseEntity<List<ListarAssinaturasTipoDTO>> listarAssinaturasPorCliente(Long clienteId) {
+        List<AssinaturaModel> lista;
+        lista = assinaturaRepository.findByClienteCodigo(clienteId);
+        List<ListarAssinaturasTipoDTO> listDTO = lista.stream()
+        .map(assinatura -> new ListarAssinaturasTipoDTO(
+                assinatura.getCodigo(),
+                assinatura.getCliente().getCodigo(),
+                assinatura.getAplicativo().getCodigo(),
+                assinatura.getInicioVigencia(),
+                assinatura.getFimVigencia()))
+        .collect(Collectors.toList());
+        return ResponseEntity.ok(listDTO);
     }
 
     // Listar assinaturas de um aplicativo
-    public List<AssinaturaModel> listarAssinaturasPorAplicativo(Long aplicativoId) {
-        return assinaturaRepository.findByAplicativoCodigo(aplicativoId);
+    public ResponseEntity<List<ListarAssinaturasTipoDTO>> listarAssinaturasPorAplicativo(Long aplicativoId) {
+        List<AssinaturaModel> lista;
+        lista = assinaturaRepository.findByAplicativoCodigo(aplicativoId);
+        List<ListarAssinaturasTipoDTO> listDTO = lista.stream()
+        .map(assinatura -> new ListarAssinaturasTipoDTO(
+                assinatura.getCodigo(),
+                assinatura.getCliente().getCodigo(),
+                assinatura.getAplicativo().getCodigo(),
+                assinatura.getInicioVigencia(),
+                assinatura.getFimVigencia()))
+        .collect(Collectors.toList());
+        return ResponseEntity.ok(listDTO);
     }
 }
