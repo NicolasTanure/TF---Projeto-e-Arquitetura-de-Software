@@ -69,13 +69,13 @@ public class AssinaturaController {
     }
 
     @GetMapping("/asscli/{codcli}")
-    public List<AssinaturaModel> listarAssinaturasCliente(@PathVariable Long codcli) {
+    public ResponseEntity<List<ListarAssinaturasTipoDTO>> listarAssinaturasCliente(@PathVariable Long codcli) {
         return assinaturaService.listarAssinaturasPorCliente(codcli);
     }
 
     // Listar assinaturas de um aplicativo
     @GetMapping("/assapp/{codapp}")
-    public List<AssinaturaModel> listarAssinaturasAplicativo(@PathVariable Long codapp) {
+    public ResponseEntity<List<ListarAssinaturasTipoDTO>> listarAssinaturasAplicativo(@PathVariable Long codapp) {
         return assinaturaService.listarAssinaturasPorAplicativo(codapp);
     }
 }
