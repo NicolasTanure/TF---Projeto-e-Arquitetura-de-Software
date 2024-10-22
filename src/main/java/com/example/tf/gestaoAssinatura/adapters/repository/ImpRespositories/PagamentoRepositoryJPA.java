@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Pagamento;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IPagamentoRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories.PagamentoRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IPagamentoRepository;
 import com.example.tf.gestaoAssinatura.domain.model.PagamentoModel;
 
 @Repository

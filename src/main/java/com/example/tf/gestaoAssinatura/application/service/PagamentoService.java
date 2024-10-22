@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.tf.gestaoAssinatura.adapters.dto.PaymentRequestDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.RespostaPagamentoDTO;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAplicativoRepository;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IPagamentoRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAplicativoRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAssinaturaRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IPagamentoRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
 import com.example.tf.gestaoAssinatura.domain.model.PagamentoModel;
 

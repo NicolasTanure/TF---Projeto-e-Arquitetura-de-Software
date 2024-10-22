@@ -1,6 +1,6 @@
 package com.example.tf.gestaoAssinatura.application.service;
 
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAplicativoRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAplicativoRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AplicativoModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -3,9 +3,9 @@ package com.example.tf.gestaoAssinatura.application.service;
 import com.example.tf.gestaoAssinatura.adapters.dto.AssinaturaRequestDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.AssinaturaResponseDTO;
 import com.example.tf.gestaoAssinatura.adapters.dto.ListarAssinaturasTipoDTO;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAplicativoRepository;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IClienteRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAplicativoRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAssinaturaRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IClienteRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AplicativoModel;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
 

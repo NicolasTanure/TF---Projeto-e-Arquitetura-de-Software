@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Aplicativo;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAplicativoRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories.AplicativoRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAplicativoRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AplicativoModel;
 
 @Repository

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Assinatura;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IAssinaturaRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories.AssinaturaRepository;
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IAssinaturaRepository;
 import com.example.tf.gestaoAssinatura.domain.model.AssinaturaModel;
 
 @Repository

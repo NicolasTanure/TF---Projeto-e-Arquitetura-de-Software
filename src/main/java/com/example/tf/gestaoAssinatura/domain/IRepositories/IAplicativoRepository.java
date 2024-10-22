@@ -1,4 +1,4 @@
-package com.example.tf.gestaoAssinatura.adapters.repository.IRepositories;
+package com.example.tf.gestaoAssinatura.domain.IRepositories;
 
 import java.util.List;
 import java.util.Optional;

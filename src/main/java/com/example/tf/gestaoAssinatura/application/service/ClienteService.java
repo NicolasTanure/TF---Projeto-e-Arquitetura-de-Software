@@ -3,9 +3,8 @@ package com.example.tf.gestaoAssinatura.application.service;
 
 
 import com.example.tf.gestaoAssinatura.adapters.repository.Entities.Cliente;
-import com.example.tf.gestaoAssinatura.adapters.repository.IRepositories.IClienteRepository;
 import com.example.tf.gestaoAssinatura.adapters.repository.ITFRepositories.ClienteRepository;
-
+import com.example.tf.gestaoAssinatura.domain.IRepositories.IClienteRepository;
 import com.example.tf.gestaoAssinatura.domain.model.ClienteModel;
 import org.springframework.stereotype.Service;
 
